@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ES6", // 輸出的 JavaScript 版本
+        "module": "commonjs", // 模組系統
+        "strict": true, // 啟用所有嚴格類型檢查選項
+        "experimentalDecorators": true, // 啟用裝飾器
+        "emitDecoratorMetadata": true, // 啟用裝飾器元數據
+        "moduleResolution": "node", // 模組解析策略
+        "esModuleInterop": true, // 允許默認匯入非 ES6 模組
+        "skipLibCheck": true, // 跳過庫檢查以加速編譯
+        "resolveJsonModule": true, // 允許導入 JSON 檔案
+        "forceConsistentCasingInFileNames": true, // 保持檔案名稱大小寫一致
+        "outDir": "./dist", // 輸出的目錄
+        "rootDir": "src", // TypeScript 源文件所在的根目錄
+        "baseUrl": "./src", // 設定 baseUrl
+        "paths": {
+            "@/*": ["*"] // 配置 @ 代表 src 資料夾
+        }
+    },
+    "include": ["src/**/*.ts", "src/app.ts", "src/index.ts", "src/types/**/*.d.ts"], // 包含 src 目錄中的所有 TypeScript 檔案
+    "exclude": ["dist"] // 排除 dist 目錄中的檔案
+}
