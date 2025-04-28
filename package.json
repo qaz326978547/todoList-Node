@@ -4,10 +4,11 @@
     "description": "",
     "main": "index.ts",
     "scripts": {
+        "build": "tsc",
         "lint": "eslint . --ext .ts,.js",
         "lint:fix": "eslint . --ext .ts,.js --fix",
         "format": "prettier --write .",
-        "start": "docker compose --env-file .env up -d --build",
+        "start": "node dist/index.js",
         "restart": "docker compose --env-file .env up --force-recreate --build -d",
         "stop": "docker compose --env-file .env stop",
         "clean": "docker compose --env-file .env down -v",
