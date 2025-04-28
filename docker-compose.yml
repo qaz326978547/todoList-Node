@@ -1,7 +1,12 @@
 version: '3.8'
+
+# 定義 Volume 用來儲存 PostgreSQL 的數據
 volumes:
     pgData:
+
+# 定義服務
 services:
+    # PostgreSQL 服務
     postgres:
         image: postgres:16.4-alpine3.20
         environment:
@@ -11,23 +16,25 @@ services:
         volumes:
             - pgData:/var/lib/postgresql/data
         ports:
-            - 5432:5432
+            - '5432:5432' # 映射到宿主機的 5432 埠
         deploy:
             replicas: 1
         networks:
             - bootcamp_network
         healthcheck:
-            test: ['CMD-SHELL', "sh -c 'pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}'"]
+            test: ['CMD-SHELL', 'pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}']
             interval: 10s
             timeout: 3s
             retries: 3
+
+    # Node.js 應用程式
     bootcamp-fitness:
         build:
-            dockerfile: Dockerfile
+            context: . # 確保 Dockerfile 在當前目錄下
         env_file:
-            - .env
+            - .env # 引用環境變數配置檔案
         ports:
-            - '${PORT}:${PORT}'
+            - '${PORT}:${PORT}' # 映射容器的端口到宿主機
         networks:
             - bootcamp_network
         logging:
@@ -44,5 +51,8 @@ services:
             timeout: 30s
         deploy:
             replicas: 1
+
+# 定義網絡
 networks:
     bootcamp_network:
+        driver: bridge
