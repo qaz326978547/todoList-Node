@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // 啟用 CORS，允許憑證並指定來源
 app.use(
     cors({
-        origin: 'http://localhost:5173', // 指定允許的來源
+        origin: 'https://testfornt.zeabur.app/', // 指定允許的來源
         credentials: true, // 允許攜帶憑證（如 Cookie）
     })
 )
